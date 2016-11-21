@@ -1,0 +1,22 @@
+{
+  "name": "@types/objection",
+  "version": "0.6.1",
+  "description": "Type definitions for objection.js",
+  "main": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "objection"
+  ],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drew-r/objection.d.ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/drew-r/objection.d.ts/issues"
+  },
+  "homepage": "https://github.com/drew-r/objection.d.ts#readme"
+}
