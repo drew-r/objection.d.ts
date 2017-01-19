@@ -433,13 +433,13 @@ declare module "objection" {
     insertWithRelatedAndFetch(graph: ModelsOrObjects): this;
 
     update(modelOrObject: Object | Model): this;
-    updateAndFetchById(id: Id, modelOrObject: Object | Model): this;
+    updateAndFetchById(id: Id, modelOrObject: Object | Model): SingleQueryBuilder<T>;
 
     patch(modelOrObject: Object | Model): this;
-    patchAndFetchById(id: Id, modelOrObject: Object | Model): this;
+    patchAndFetchById(id: Id, modelOrObject: Object | Model): SingleQueryBuilder<T>;
     patchAndFetch(modelOrObject: Object | Model): this;
 
-    deleteById(idOrIds: IdOrIds): this;
+    deleteById(idOrIds: IdOrIds): SingleQueryBuilder<T>;
 
     relate(ids: IdOrIds | ModelsOrObjects): this;
     unrelate(): this;
