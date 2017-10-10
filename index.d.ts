@@ -390,8 +390,8 @@ declare module "objection" {
     $pick(keys: string | string[] | Properties): this;
     $clone(): this;
 
-    $query(trx?: Transaction): SingleQueryBuilder<this>;
-    $query<T>(trx?: Transaction): SingleQueryBuilder<T>;
+    $query(trx?: Transaction): QueryBuilderSingle<this>;
+    $query<T>(trx?: Transaction): QueryBuilderSingle<T>;
     $relatedQuery<T>(relationName: string, transaction?: Transaction): QueryBuilder<T>;
 
     $loadRelated<T>(expression: RelationExpression, filters?: Filters<T>): QueryBuilder<T>;
@@ -413,9 +413,11 @@ declare module "objection" {
     static forClass<T>(modelClass: T): QueryBuilder<T>;
   }
 
-  export interface SingleQueryBuilder<T> extends QueryBuilderBase<T>, Promise<T> {
 
-  }
+  /**
+   * QueryBuilder with one expected result
+   */
+  export interface QueryBuilderSingle<T> extends QueryBuilderBase<T>, Promise<T> { }
 
   export interface UpsertOptions {
     relate?: boolean;
@@ -432,7 +434,7 @@ declare module "objection" {
 
   interface QueryBuilderBase<T> extends QueryInterface<T> {
 
-    findById(idOrIds: IdOrIds): SingleQueryBuilder<T>;
+    findById(idOrIds: IdOrIds): QueryBuilderSingle<T>;
 
     insert(modelsOrObjects?: ModelsOrObjects): this;
     insertAndFetch(modelsOrObjects: ModelsOrObjects): this;
@@ -444,15 +446,15 @@ declare module "objection" {
     insertWithRelatedAndFetch(graph: ModelsOrObjects): this;
 
     update(modelOrObject: Object | Model): this;
-    updateAndFetchById(id: Id, modelOrObject: Object | Model): SingleQueryBuilder<T>;
+    updateAndFetchById(id: Id, modelOrObject: Object | Model): QueryBuilderSingle<T>;
 
     patch(modelOrObject: Object | Model): this;
-    patchAndFetchById(id: Id, modelOrObject: Object | Model): SingleQueryBuilder<T>;
+    patchAndFetchById(id: Id, modelOrObject: Object | Model): QueryBuilderSingle<T>;
     patchAndFetch(modelOrObject: Object | Model): this;
     
     upsertGraph: Upsert<T>;
     
-    deleteById(idOrIds: IdOrIds): SingleQueryBuilder<T>;
+    deleteById(idOrIds: IdOrIds): QueryBuilderSingle<T>;
 
     relate(ids: IdOrIds | ModelsOrObjects): this;
     unrelate(): this;
@@ -578,7 +580,7 @@ declare module "objection" {
     page(page: number, pageSize: number): this;
     range(start: number, end: number): this;
     pluck(propertyName: string): this;
-    first(): SingleQueryBuilder<T>;
+    first(): QueryBuilderSingle<T>;
 
     traverse(modelClass: typeof Model, traverser: TraverserFunction): this;
 
@@ -715,8 +717,8 @@ declare module "objection" {
     decrement(columnName: string, amount?: number): this;
 
     // Others
-    first(...columns: string[]): SingleQueryBuilder<T>;
-    first<T>(...columns: string[]): SingleQueryBuilder<T>;
+    first(...columns: string[]): QueryBuilderSingle<T>;
+    first<T>(...columns: string[]): QueryBuilderSingle<T>;
 
     debug(enabled?: boolean): this;
     pluck(column: string): this;
@@ -727,9 +729,9 @@ declare module "objection" {
     returning(column: string | string[]): this;
 
     del(returning?: string | string[]): this;
-    del<T>(returning?: string | string[]): SingleQueryBuilder<T>;
+    del<T>(returning?: string | string[]): QueryBuilderSingle<T>;
     delete(returning?: string | string[]): this;
-    delete<T>(returning?: string | string[]): SingleQueryBuilder<T>;
+    delete<T>(returning?: string | string[]): QueryBuilderSingle<T>;
     truncate(): this;
 
     transacting(trx: Transaction): this;
