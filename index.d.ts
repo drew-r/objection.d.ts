@@ -417,6 +417,17 @@ declare module "objection" {
 
   }
 
+  export interface UpsertOptions {
+    relate?: boolean;
+    unrelate?: boolean;
+    insertMissing?: boolean;
+  }
+
+  interface Upsert<T> {
+    (modelsOrObjects?: Array<Partial<T>>, options?: UpsertOptions): QueryBuilder<T>;
+    (modelOrObject?: Partial<T>, options?: UpsertOptions): QueryBuilderSingle<T>;
+  }
+
   export interface QueryBuilder<T> extends QueryBuilderBase<T>, Promise<T[]> {}
 
   interface QueryBuilderBase<T> extends QueryInterface<T> {
@@ -438,7 +449,9 @@ declare module "objection" {
     patch(modelOrObject: Object | Model): this;
     patchAndFetchById(id: Id, modelOrObject: Object | Model): SingleQueryBuilder<T>;
     patchAndFetch(modelOrObject: Object | Model): this;
-
+    
+    upsertGraph: Upsert<T>;
+    
     deleteById(idOrIds: IdOrIds): SingleQueryBuilder<T>;
 
     relate(ids: IdOrIds | ModelsOrObjects): this;
