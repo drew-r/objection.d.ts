@@ -462,6 +462,9 @@ declare module "objection" {
     forUpdate(): this;
     forShare(): this;
 
+
+    alias(alias: string): this;
+
     // TODO: fromJS does not exist in current knex documentation: http://knexjs.org/#Builder-fromJS
     withSchema(schemaName: string): this;
 
@@ -800,6 +803,7 @@ declare module "objection" {
     (columnName: string, value: Value): QueryBuilder<T>;
     (columnName: string, operator: string, value: Value): QueryBuilder<T>;
     <T1>(columnName: string, operator: string, query: QueryBuilder<T1>): QueryBuilder<T>;
+    <T1>(columnName: string, operator: string, callback: (queryBuilder: QueryBuilder<T1>) => any): QueryBuilder<T>;
   }
 
   interface WhereRaw<T> extends RawQueryBuilder<T> {
