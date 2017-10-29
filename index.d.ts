@@ -433,6 +433,8 @@ declare module "objection" {
   export interface QueryBuilder<T> extends QueryBuilderBase<T>, Promise<T[]> {}
 
   interface QueryBuilderBase<T> extends QueryInterface<T> {
+    
+    alias(alias: string): this;
 
     findById(idOrIds: IdOrIds): QueryBuilderSingle<T>;
 
