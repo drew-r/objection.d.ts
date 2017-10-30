@@ -547,6 +547,7 @@ declare module "objection" {
 
     eagerAlgorithm(algo: EagerAlgorithm): this;
     eager(relationExpression: RelationExpression, filters?: FilterExpression): this;
+    mergeEager(relationExpression: RelationExpression, filters?: FilterExpression): this;
     
     allowEager: RelationExpressionMethod;
     modifyEager: ModifyEager<T>;
