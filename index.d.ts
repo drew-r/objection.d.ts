@@ -394,7 +394,7 @@ declare module "objection" {
     $query<T>(trx?: Transaction): QueryBuilderSingle<T>;
     $relatedQuery<T>(relationName: string, transaction?: Transaction): QueryBuilder<T>;
 
-    $loadRelated<T>(expression: RelationExpression, filters?: Filters<T>): QueryBuilder<T>;
+    $loadRelated<T>(expression: RelationExpression, filters?: Filters<T>, trx?: Transaction): QueryBuilder<T>;
 
     $traverse(traverser: TraverserFunction): void;
     $traverse<T extends Model>(this: ModelClass<T>, filterConstructor: ModelClass<T>, traverser: TraverserFunction): void;
