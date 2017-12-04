@@ -445,8 +445,8 @@ declare module "objection" {
     insert(modelsOrObjects?: ModelsOrObjects): this;
     insertAndFetch(modelsOrObjects: ModelsOrObjects): this;
 
-    insertGraph(modelsOrObjects: ModelsOrObjects, opts: InsertGraphOptions): this;
-    insertGraphAndFetch(modelsOrObjects: ModelsOrObjects, opts: InsertGraphOptions): this;
+    insertGraph(modelsOrObjects: ModelsOrObjects, opts?: InsertGraphOptions): this;
+    insertGraphAndFetch(modelsOrObjects: ModelsOrObjects, opts?: InsertGraphOptions): this;
 
     insertWithRelated(graph: ModelsOrObjects): this;
     insertWithRelatedAndFetch(graph: ModelsOrObjects): this;
