@@ -431,6 +431,10 @@ declare module "objection" {
   }
 
   export interface QueryBuilder<T> extends QueryBuilderBase<T>, Promise<T[]> {}
+  
+  export interface InsertGraphOptions {
+    relate?: boolean;
+  }
 
   interface QueryBuilderBase<T> extends QueryInterface<T> {
     
@@ -441,8 +445,8 @@ declare module "objection" {
     insert(modelsOrObjects?: ModelsOrObjects): this;
     insertAndFetch(modelsOrObjects: ModelsOrObjects): this;
 
-    insertGraph(modelsOrObjects: ModelsOrObjects): this;
-    insertGraphAndFetch(modelsOrObjects: ModelsOrObjects): this;
+    insertGraph(modelsOrObjects: ModelsOrObjects, opts: InsertGraphOptions): this;
+    insertGraphAndFetch(modelsOrObjects: ModelsOrObjects, opts: InsertGraphOptions): this;
 
     insertWithRelated(graph: ModelsOrObjects): this;
     insertWithRelatedAndFetch(graph: ModelsOrObjects): this;
