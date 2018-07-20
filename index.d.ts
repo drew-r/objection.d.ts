@@ -358,7 +358,7 @@ declare module "objection" {
     static bindTransaction<T extends Model>(this: ModelClass<T>, transaction: Transaction): ModelClass<T>;
     static extend<T>(subclass: T): ModelClass<T>;
 
-    static fromJson<T extends Model>(this: ModelClass<T>, json: Object, opt?: ModelOptions): T;
+    static fromJson<T extends ModelClass<any>>(this: T, json: Object, opt?: ModelOptions): InstanceType<T>;
     static fromDatabaseJson<T extends Model>(this: ModelClass<T>, row: Object): T;
 
     static omitImpl(f: (obj: Object, prop: string) => void): void;
