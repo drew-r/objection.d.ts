@@ -298,6 +298,7 @@ declare module "objection" {
     ManyToManyRelation: Relation;
 
     query(trx?: Transaction): QueryBuilder<T>;
+    relatedQuery<T>(relationName: string, trx?: Transaction): QueryBuilder<T>;
     knex(knex?: knex): knex;
     formatter(): any; // < the knex typings punts here too
     knexQuery(): QueryBuilder<T>;
