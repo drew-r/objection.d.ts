@@ -349,6 +349,7 @@ declare module "objection" {
 
     static query<T>(this: { new(): T }, trx?: Transaction): QueryBuilder<T>;
     static query<T>(trx?: Transaction): QueryBuilder<T>;
+    static relatedQuery<T>(relationName: string, trx?: Transaction): QueryBuilder<T>;
     static knex(knex?: knex): knex;
     static formatter(): any; // < the knex typings punts here too
     static knexQuery<T>(this: { new(): T }): QueryBuilder<T>;
