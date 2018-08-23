@@ -858,9 +858,9 @@ declare module "objection" {
   }
 
   interface Union<T> {
-    (callback: Function, wrap?: boolean): QueryBuilder<T>;
-    (callbacks: Function[], wrap?: boolean): QueryBuilder<T>;
-    (...callbacks: Function[]): QueryBuilder<T>;
+    (callback: Function | QueryBuilder<any>, wrap?: boolean): QueryBuilder<T>;
+    (callbacks: (Function |  QueryBuilder<any>)[], wrap?: boolean): QueryBuilder<T>;
+    (...callbacks: (Function |  QueryBuilder<any>)[]): QueryBuilder<T>;
     // (...callbacks: Function[], wrap?: boolean): QueryInterface;
   }
 
