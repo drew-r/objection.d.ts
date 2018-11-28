@@ -357,7 +357,7 @@ declare module "objection" {
     // This approach should be applied to all other references of Model that 
     // should return the subclass:
     static bindKnex<T>(this: T, knex: knex): T;
-    static bindTransaction<T extends Model>(this: ModelClass<T>, transaction: Transaction): ModelClass<T>;
+    static bindTransaction<T>(this: T, transaction: Transaction): T;
     static extend<T>(subclass: T): ModelClass<T>;
 
     static fromJson<T extends ModelClass<any>>(this: T, json: Object, opt?: ModelOptions): InstanceType<T>;
