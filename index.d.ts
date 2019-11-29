@@ -230,6 +230,7 @@ declare module "objection" {
   }
 
   type TraverserFunction = (model: typeof Model, parentModel: string | typeof Model, relationName: string) => void;
+  type AsyncTraverserFunction = (model: typeof Model, parentModel: string | typeof Model, relationName: string) => Promise<void>;
 
   type Id = string | number;
 
@@ -321,6 +322,9 @@ declare module "objection" {
 
     traverse(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: TraverserFunction): void;
     traverse(models: Model | Model[], traverser: TraverserFunction): void;
+    
+    traverseAsync(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: TraverserFunction): Promise<void>;
+    traverseAsync(models: Model | Model[], traverser: TraverserFunction): Promise<void>;
   }
 
   type Filters<T> = { [filterName: string]: (queryBuilder: QueryBuilder<T>) => void };
