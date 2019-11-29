@@ -22,6 +22,11 @@
  * SOFTWARE.
  */
 
+
+type Nullable<T> = {
+  [P in keyof T]: T[P] | null;
+}
+
 interface JsonSchema {
   $ref?: string;
   /////////////////////////////////////////////////
@@ -428,8 +433,8 @@ declare module "objection" {
   }
 
   interface Upsert<T> {
-    (modelsOrObjects?: Array<Partial<T>>, options?: UpsertOptions): QueryBuilder<T>;
-    (modelOrObject?: Partial<T>, options?: UpsertOptions): QueryBuilderSingle<T>;
+    (modelsOrObjects?: Array<Partial<Nullable<T>>>, options?: UpsertOptions): QueryBuilder<T>;
+    (modelOrObject?: Partial<Nullable<T>>, options?: UpsertOptions): QueryBuilderSingle<T>;
   }
 
   export interface QueryBuilder<T> extends QueryBuilderBase<T>, Promise<T[]> {}
