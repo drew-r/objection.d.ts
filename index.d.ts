@@ -323,8 +323,8 @@ declare module "objection" {
     traverse(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: TraverserFunction): void;
     traverse(models: Model | Model[], traverser: TraverserFunction): void;
     
-    traverseAsync(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: TraverserFunction): Promise<void>;
-    traverseAsync(models: Model | Model[], traverser: TraverserFunction): Promise<void>;
+    traverseAsync(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: AsyncTraverserFunction): Promise<void>;
+    traverseAsync(models: Model | Model[], traverser: AsyncTraverserFunction): Promise<void>;
   }
 
   type Filters<T> = { [filterName: string]: (queryBuilder: QueryBuilder<T>) => void };
@@ -378,6 +378,9 @@ declare module "objection" {
 
     static traverse(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: TraverserFunction): void;
     static traverse(models: Model | Model[], traverser: TraverserFunction): void;
+    
+    static traverse(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: AsyncTraverserFunction): void;
+    static traverse(models: Model | Model[], traverser: AsyncTraverserFunction): void;
 
     $id(): any;
     $id(id: any): void;
@@ -409,6 +412,9 @@ declare module "objection" {
 
     $traverse(traverser: TraverserFunction): void;
     $traverse<T extends Model>(this: ModelClass<T>, filterConstructor: ModelClass<T>, traverser: TraverserFunction): void;
+    
+    $traverseAsync(traverser: AsyncTraverserFunction): Promise<void>;
+    $traverseAsync<T extends Model>(this: ModelClass<T>, filterConstructor: ModelClass<T>, traverser: AsyncTraverserFunction): Promise<void>;
 
     $knex(): knex;
     $transaction(): knex; // TODO: this is based on the documentation, but doesn't make sense (why not Transaction?)
@@ -604,6 +610,7 @@ declare module "objection" {
     first(): QueryBuilderSingle<T>;
 
     traverse(modelClass: typeof Model, traverser: TraverserFunction): this;
+    traverseAsync(modelClass: typeof Model, traverser: AsyncTraverserFunction): this;
 
     pick(modelClass: typeof Model, properties: string[]): this;
     pick(properties: string[]): this;
