@@ -379,8 +379,10 @@ declare module "objection" {
     static traverse(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: TraverserFunction): void;
     static traverse(models: Model | Model[], traverser: TraverserFunction): void;
     
-    static traverse(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: AsyncTraverserFunction): void;
-    static traverse(models: Model | Model[], traverser: AsyncTraverserFunction): void;
+    static traverseAsync(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: AsyncTraverserFunction): void;
+    static traverseAsync(models: Model | Model[], traverser: AsyncTraverserFunction): void;
+    
+    static getRelations(): any;
 
     $id(): any;
     $id(id: any): void;
