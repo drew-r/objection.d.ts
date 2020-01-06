@@ -609,6 +609,7 @@ declare module "objection" {
     page(page: number, pageSize: number): this;
     range(start: number, end: number): this;
     pluck(propertyName: string): this;
+    pluck<T>(propertyName: string): T;
     first(): QueryBuilderSingle<T>;
 
     traverse(modelClass: typeof Model, traverser: TraverserFunction): this;
