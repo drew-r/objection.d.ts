@@ -379,8 +379,8 @@ declare module "objection" {
     static traverse(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: TraverserFunction): void;
     static traverse(models: Model | Model[], traverser: TraverserFunction): void;
     
-    static traverseAsync(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: AsyncTraverserFunction): void;
-    static traverseAsync(models: Model | Model[], traverser: AsyncTraverserFunction): void;
+    static traverseAsync(filterConstructor: ModelClass<any>, models: Model | Model[], traverser: AsyncTraverserFunction): Promise<void>;
+    static traverseAsync(models: Model | Model[], traverser: AsyncTraverserFunction): Promise<void>;
     
     static getRelations(): any;
 
