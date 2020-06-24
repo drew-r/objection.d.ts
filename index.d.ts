@@ -219,7 +219,7 @@ declare module "objection" {
   /**
    * @see http://vincit.github.io/objection.js/#relationexpression
    */
-  type RelationExpression = string;
+  type RelationExpression = string | object;
 
   type FilterFunction = <T>(queryBuilder: QueryBuilder<T>) => void;
   
@@ -241,7 +241,7 @@ declare module "objection" {
   type RelationOptions = { alias: boolean | string };
 
   interface JoinRelation {
-    <T>(relationName: string, opt?: RelationOptions): QueryBuilder<T>;
+    <T>(relationExpr: string | RelationExpression, opt?: RelationOptions): QueryBuilder<T>;
   }
 
   type JsonObjectOrFieldExpression = Object | Object[] | FieldExpression;
