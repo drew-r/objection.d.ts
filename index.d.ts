@@ -620,6 +620,10 @@ declare module "objection" {
     
     omit(modelClass: typeof Model, properties: string[]): this;
     omit(properties: string[]): this;
+    
+    
+    hasSelects(): boolean;
+    hasSelection(selection: string): boolean; 
   }
 
   export function transaction<M extends Model, T>(
